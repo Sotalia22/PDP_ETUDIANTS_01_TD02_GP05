@@ -16,7 +16,7 @@ void setup() {
   Serial.begin(9600);
   dht.begin();
 
-  digitalWrite(LED, HIGH); // Allume la LED lors de la lecture des données
+  digitalWrite(LED, HIGH); // Signal de la lecture de données
   
   // Température
   sensors_event_t event;
@@ -35,10 +35,12 @@ void setup() {
     Serial.println(F("%"));
   }
 
-  digitalWrite(LED, LOW); // Éteint le LED après la lecture
+  digitalWrite(LED, LOW);
   
   // Mode Deep Sleep pour 5 secondes
   esp_sleep_enable_timer_wakeup(5000000);
+  Serial.flush();
+  delay(20);
   esp_deep_sleep_start();
 }
 
